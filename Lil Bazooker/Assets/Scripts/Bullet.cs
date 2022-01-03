@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     public float explosionRadius;
     public float explosionForce;
 
+
+    private bool isExploded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,9 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isExploded)
+            return;
+
        if (collision.CompareTag("Player"))
         {
             return;
@@ -37,12 +43,14 @@ public class Bullet : MonoBehaviour
             Rigidbody2D rb2d = nearby.GetComponent<Rigidbody2D>();
             if(rb2d != null)
             {
+                Debug.Log(nearby.name);
                 Vector2 direction = nearby.transform.position - transform.position;
+                direction = direction.normalized;
 
                 nearby.GetComponent<Rigidbody2D>().AddForce(direction * explosionForce, ForceMode2D.Impulse);
             }
         }
-
+        isExploded = true;
         Destroy(gameObject);
     }
     private void OnDrawGizmosSelected()

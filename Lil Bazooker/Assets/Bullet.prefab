@@ -4906,7 +4906,7 @@ MonoBehaviour:
   rb: {fileID: 3745233009977667788}
   explosion: {fileID: 8546579126355361400, guid: e2ced29febd4cb94aa77196b9d78f3b8, type: 3}
   explosionRadius: 0.5
-  explosionForce: 12
+  explosionForce: 5
 --- !u!50 &3745233009977667788
 Rigidbody2D:
   serializedVersion: 4
